@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin • Medinova Surgitech</title>
+<link rel="icon" href="/img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/styles.css">
+<link rel="stylesheet" href="/src/admin.css">
+</head>
+<body class="adm">
+<header>
+<div class="wrap bar">
+<a class="brand" href="/" aria-label="Medinova Surgitech website"><span class="logochip"><img src="/.netlify/images?url=/img/logo.jpg&amp;w=200&amp;fm=webp" alt=""></span><span>MEDINOVA<small>ADMIN PANEL</small></span></a>
+<div class="who" id="who" hidden><span id="whoemail"></span><a href="/" class="btn line">View site</a><button type="button" class="btn solid" id="logout">Sign out</button></div>
+</div>
+</header>
+
+<main>
+<section id="v-loading" class="view"><div class="wrap"><p class="hint">Loading…</p></div></section>
+
+<section id="v-auth" class="view auth" hidden>
+<div class="authcard">
+<small class="eyebrow">Owner access</small>
+<h2 id="auth-title">Sign in</h2>
+<p class="hint" id="auth-hint">Enter your admin email and password to manage the product catalogue.</p>
+<form id="auth-form" novalidate>
+<label id="email-row">Email<input id="email" type="email" autocomplete="username" required></label>
+<label id="pw-row">Password<input id="password" type="password" autocomplete="current-password" minlength="8" required></label>
+<p class="err" id="auth-err" role="alert"></p>
+<button type="submit" class="btn solid wide" id="auth-submit">Sign in</button>
+</form>
+<div class="authlinks" id="auth-links">
+<button type="button" class="link" data-mode="forgot">Forgot password?</button>
+<button type="button" class="link" data-mode="setup">First time? Create your admin password</button>
+</div>
+</div>
+</section>
+
+<section id="v-denied" class="view auth" hidden>
+<div class="authcard">
+<small class="eyebrow">Access restricted</small>
+<h2>Not authorised</h2>
+<p class="hint">This account is not allowed to manage the catalogue. Sign out and sign in with the owner account.</p>
+<button type="button" class="btn solid wide" data-logout>Sign out</button>
+</div>
+</section>
+
+<section id="v-dash" class="view" hidden>
+<div class="wrap">
+<div class="head"><div><small class="eyebrow">Catalogue manager</small><h2>Products</h2></div><button type="button" class="btn add" id="addb">+ Add product</button></div>
+<div class="stats" id="stats"></div>
+<div class="tools">
+<label class="sr">Filter by category<select id="filter"></select></label>
+<label class="sr search">Search products<input id="search" type="search" placeholder="Search by name, model or description"></label>
+</div>
+<div id="list" class="alist"></div>
+</div>
+</section>
+</main>
+
+<dialog id="dlg">
+<form id="pform" method="dialog" novalidate>
+<h3 id="dt">Add product</h3>
+<label>Category<select id="fcat" required></select></label>
+<label>Product name<input id="fn" maxlength="120" required></label>
+<label>Model / short line (optional)<input id="fc" maxlength="80" placeholder="e.g. Model number or key feature"></label>
+<label>Description<textarea id="fd" rows="6" maxlength="2000"></textarea><span class="count" id="fdc"></span></label>
+<label>Photo<input id="ff" type="file" accept="image/jpeg,image/png,image/webp"></label>
+<div class="pvwrap" id="pvwrap" hidden><img id="pv" alt="Product photo preview"><button type="button" class="link" id="rmimg">Remove photo</button></div>
+<p class="err" id="ferr" role="alert"></p>
+<div class="act"><button type="submit" class="btn solid" id="sv">Save product</button><button type="button" class="btn line" id="cn">Cancel</button></div>
+</form>
+</dialog>
+
+<dialog id="confirm" class="small">
+<h3>Delete product?</h3>
+<p class="hint" id="confirm-text"></p>
+<div class="act"><button type="button" class="btn danger" id="confirm-yes">Delete</button><button type="button" class="btn line" id="confirm-no">Cancel</button></div>
+</dialog>
+
+<div id="toast" role="status"></div>
+<script type="module" src="/src/admin.ts"></script>
+</body>
+</html>

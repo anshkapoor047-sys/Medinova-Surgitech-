@@ -8,6 +8,7 @@ import {
   signup,
   updateUser,
 } from "@netlify/identity";
+// Migrate to Supabase Auth next
 import { CATEGORIES } from "../shared/categories";
 import { api, esc, imageUrl, type Product, type ProductInput } from "./api";
 
